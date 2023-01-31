@@ -1,0 +1,15 @@
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        res = ""
+        ref = ["", "I", "V", "X", "L", "C", "D", "M"]
+        count = 1
+        while num != 0:
+            tmp = ref[(count+1+(num % 10 - 5 == 4))*(num % 10 >= 4)]
+            mod = (num%5)%4 + (num%5 == 4)
+            end = ref[count]*(mod)
+            tmp = end*(num % 10 < 5 or num % 5 == 4) + tmp + end*(num % 10 > 5 and num % 5 != 4)
+            res = tmp + res
+            num //= 10
+            count += 2
+        
+        return res

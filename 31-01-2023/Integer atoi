@@ -1,0 +1,28 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        s = s.strip( ) 
+        low = -2 **31
+        up = low * -1 - 1
+        ans = '' 
+        fact = 1 
+        if s == "" : 
+            return 0 
+        if s[0] == '-' : 
+            fact = -1
+            s = s[1 : ]
+        elif s[0] == '+' : 
+            s = s[1 : ]
+        for i in s : 
+            if i.isdigit( )  == False : 
+                break  
+            ans += i
+        if ans == '' : 
+            return 0 
+        while len(ans) > 1 and ans[0] == '0' : 
+            ans = ans[1 : ]
+     
+        if fact == -1 : 
+            ans = -1 * int(ans) 
+            return ans if ans > low else low
+        else : 
+            return int(ans) if int(ans) < up else up 
